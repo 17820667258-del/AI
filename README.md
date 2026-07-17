@@ -4,7 +4,7 @@
 
 ## 在线体验
 
-👉 **[立即使用](https://17820667258-del.github.io/AI/)**
+👉 **[立即使用](https://AItoolApp.github.io/AI/)**
 
 直接打开即可使用，无需安装、无需注册，所有数据保存在浏览器本地。支持添加到手机桌面（PWA）。
 
@@ -31,7 +31,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/17820667258-del/AI.git
+git clone https://github.com/AItoolApp/AI.git
 
 # 直接打开
 open 习惯打卡.html
@@ -59,3 +59,7 @@ AI/
 ## License
 
 MIT
+
+---
+
+Made with ✨ by AItoolApp
