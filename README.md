@@ -4,7 +4,7 @@
 
 ## 在线体验
 
-👉 **[立即使用](https://AItoolApp.github.io/AI/)**
+👉 **[立即使用](https://aitoolapp.github.io/AI/)**
 
 直接打开即可使用，无需安装、无需注册，所有数据保存在浏览器本地。支持添加到手机桌面（PWA）。
 
