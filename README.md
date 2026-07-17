@@ -4,18 +4,17 @@
 
 ## 在线体验
 
-👉 **[立即使用](https://aitool2026.github.io/habit-tracker/习惯打卡.html)**
+👉 **[立即使用](https://17820667258-del.github.io/AI/)**
 
-直接打开即可使用，无需安装、无需注册，所有数据保存在浏览器本地。
+直接打开即可使用，无需安装、无需注册，所有数据保存在浏览器本地。支持添加到手机桌面（PWA）。
 
 ## 功能
 
-- **今日打卡** — 每天一键标记习惯完成状态
-- **日历视图** — 月度打卡热力图，一目了然
+- **今日打卡** — 每天一键标记习惯完成状态，打卡成功有彩蛋庆祝
+- **日历视图** — 月度打卡日历，一目了然
 - **数据统计** — 当前连击、最长记录、月完成率
-- **习惯管理** — 添加/编辑/删除，排序自定义
+- **习惯管理** — 添加/编辑/删除，支持自定义 Emoji 图标和主题色
 - **6 种主题** — 奶油拿铁、薄荷苏打、蜜桃乌龙、海盐汽水、落日海岸、星空午夜
-- **彩蛋庆祝** — 打卡成功有彩色纸屑飞舞 🎉
 
 ## 技术栈
 
@@ -25,49 +24,38 @@
 |---|---|
 | 界面 | HTML + CSS + Vanilla JS |
 | 存储 | 浏览器 localStorage |
-| 图标 | Emoji + CSS 动画 |
+| 动画 | CSS Keyframes |
 | 打包 | 无（单 HTML 文件） |
+
+## 本地使用
+
+```bash
+# 克隆仓库
+git clone https://github.com/17820667258-del/AI.git
+
+# 直接打开
+open 习惯打卡.html
+```
 
 ## 多平台路线图
 
 | 平台 | 状态 | 技术方案 |
 |---|---|---|
-| Web (GitHub Pages) | ✅ 已发布 | 当前 HTML + PWA |
-| 微信小程序 | 📋 计划中 | Taro / 原生 WXML |
-| Android | 📋 计划中 | Capacitor / Taro RN |
-| iOS | 📋 计划中 | Capacitor |
-| macOS 桌面 | 📋 计划中 | Tauri |
+| Web (GitHub Pages) | ✅ 已上线 | 当前 HTML + PWA |
+| 微信小程序 | 📋 计划中 | Taro |
+| Android / iOS | 📋 计划中 | Capacitor |
+| 桌面 (macOS/Win/Linux) | 📋 计划中 | Tauri |
 
-## 开始使用
-
-```bash
-# 克隆到本地
-git clone https://github.com/AItool2026/habit-tracker.git
-
-# 直接用浏览器打开
-open 习惯打卡.html
-```
-
-## 开发
-
-当前为单 HTML 文件架构，所有代码集中在 `习惯打卡.html` 中：
-
-- `<style>` 部分 — 样式 + 6 套主题变量
-- `<script>` 部分 — 所有逻辑（CRUD、统计、渲染）
-
-### 目录结构
+## 目录结构
 
 ```
-习惯打卡测试/
+AI/
 ├── 习惯打卡.html      # 主应用（单页）
-├── README.md          # 说明文档
+├── index.html         # 入口跳转页
+├── README.md
 └── .gitignore
 ```
 
 ## License
 
 MIT
-
----
-
-Made with ✨ by AItool
