@@ -1,0 +1,21 @@
+# 习惯打卡 - Git Ignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Temp / test data
+测试数据.*
+
+# WeChat Mini Program build
+weapp/miniprogram_npm/
+weapp/node_modules/
+weapp/dist/
+
+# Taro / uni-app builds
+dist/
+.temp/
