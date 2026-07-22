@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { View, Text, Button, Input, ScrollView, Modal, Label } from '@tarojs/components'
+import { View, Text, Button, Input, ScrollView, Label } from '@tarojs/components'
 import { loadData, saveData } from '../../utils/storage'
 import { EMOJIS, COLORS, THEMES, Habit } from '../../utils/constants'
 import './index.scss'
@@ -66,7 +66,7 @@ export default class ManagePage extends Component<{}, State> {
 
     const theme = loadData().theme
     saveData({ habits, theme })
-    this.setState({ habits: [...habits], showModal: false })
+    this.setState({ habits: [...habits], showModal: false, editName: '' })
   }
 
   deleteHabit(id: number) {
@@ -114,49 +114,50 @@ export default class ManagePage extends Component<{}, State> {
           </ScrollView>
         )}
 
-        <Modal isOpen={showModal} title={editingId ? '编辑习惯' : '添加习惯'}
-          onClose={() => this.setState({ showModal: false })}
-          closeOnOverlayClick
-        >
-          <View className='modal-content'>
-            <View className='fg'>
-              <Label className='fg-label'>习惯名称</Label>
-              <Input className='fg-input' value={editName}
-                placeholder='例如：晨跑30分钟' maxlength={30}
-                onInput={e => this.setState({ editName: e.detail.value })}
-              />
-            </View>
-            <View className='fg'>
-              <Label className='fg-label'>选择图标</Label>
-              <View className='emoji-grid'>
-                {EMOJIS.map(e => (
-                  <View key={e}
-                    className={`epi ${e === editEmoji ? 'sel' : ''}`}
-                    onClick={() => this.setState({ editEmoji: e })}
-                  ><Text>{e}</Text></View>
-                ))}
+        {showModal && (
+          <View className='modal-overlay' onClick={() => this.setState({ showModal: false })}>
+            <View className='modal-box' onClick={e => e.stopPropagation()}>
+              <View className='modal-title'>{editingId ? '编辑习惯' : '添加习惯'}</View>
+              <View className='modal-body'>
+                <View className='fg'>
+                  <Label className='fg-label'>习惯名称</Label>
+                  <Input className='fg-input' value={editName}
+                    placeholder='例如：晨跑30分钟' maxlength={30}
+                    onInput={e => this.setState({ editName: e.detail.value })}
+                  />
+                </View>
+                <View className='fg'>
+                  <Label className='fg-label'>选择图标</Label>
+                  <View className='emoji-grid'>
+                    {EMOJIS.map(e => (
+                      <View key={e}
+                        className={`epi ${e === editEmoji ? 'sel' : ''}`}
+                        onClick={() => this.setState({ editEmoji: e })}
+                      ><Text>{e}</Text></View>
+                    ))}
+                  </View>
+                </View>
+                <View className='fg'>
+                  <Label className='fg-label'>主题色</Label>
+                  <View className='color-grid'>
+                    {COLORS.map(c => (
+                      <View key={c}
+                        className={`cpi ${c === editColor ? 'sel' : ''}`}
+                        style={`background: ${c}`}
+                        onClick={() => this.setState({ editColor: c })}
+                      ></View>
+                    ))}
+                  </View>
+                </View>
+                <View className='modal-actions'>
+                  <Button className='btn-cancel' onClick={() => this.setState({ showModal: false })}>取消</Button>
+                  <Button className='btn-confirm' onClick={() => this.saveHabit()}>保存</Button>
+                </View>
               </View>
-            </View>
-            <View className='fg'>
-              <Label className='fg-label'>主题色</Label>
-              <View className='color-grid'>
-                {COLORS.map(c => (
-                  <View key={c}
-                    className={`cpi ${c === editColor ? 'sel' : ''}`}
-                    style={`background: ${c}`}
-                    onClick={() => this.setState({ editColor: c })}
-                  ></View>
-                ))}
-              </View>
-            </View>
-            <View className='modal-actions'>
-              <Button className='btn-cancel' onClick={() => this.setState({ showModal: false })}>取消</Button>
-              <Button className='btn-confirm' onClick={() => this.saveHabit()}>保存</Button>
             </View>
           </View>
-        </Modal>
+        )}
       </View>
     )
   }
 }
-/* End of File */
