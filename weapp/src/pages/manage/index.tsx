@@ -150,8 +150,8 @@ export default class ManagePage extends Component<{}, State> {
                   </View>
                 </View>
                 <View className='modal-actions'>
-                  <Button className='btn-cancel' onClick={() => this.setState({ showModal: false })}>取消</Button>
-                  <Button className='btn-confirm' onClick={() => this.saveHabit()}>保存</Button>
+                  <Button className='btn-action cancel' onClick={() => this.setState({ showModal: false })}>取消</Button>
+                  <Button className='btn-action confirm' onClick={() => this.saveHabit()}>保存</Button>
                 </View>
               </View>
             </View>

@@ -18,9 +18,7 @@ export default class CalendarPage extends Component<{}, State> {
     checkinMap: {}
   }
 
-  componentDidMount() {
-    this.refresh()
-  }
+  componentDidMount() { this.refresh() }
   componentDidShow() { this.refresh() }
 
   refresh() {
@@ -49,7 +47,7 @@ export default class CalendarPage extends Component<{}, State> {
     const dim = new Date(year, month, 0).getDate()
     const fdm = new Date(year, month - 1, 1).getDay()
 
-    let days: ('blank' | { day: number; dateStr: string; isToday: boolean; count: number })[] = []
+    let days: any[] = []
     for (let i = 0; i < fdm; i++) days.push('blank')
     for (let d = 1; d <= dim; d++) {
       const dateStr = `${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}`
@@ -82,4 +80,3 @@ export default class CalendarPage extends Component<{}, State> {
     )
   }
 }
-/* End of File */

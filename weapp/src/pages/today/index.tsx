@@ -15,13 +15,8 @@ export default class TodayPage extends Component<{}, State> {
     currentDate: todayStr()
   }
 
-  componentDidMount() {
-    this.loadHabits()
-  }
-
-  componentDidShow() {
-    this.loadHabits()
-  }
+  componentDidMount() { this.loadHabits() }
+  componentDidShow() { this.loadHabits() }
 
   loadHabits() {
     const data = loadData()
@@ -38,10 +33,10 @@ export default class TodayPage extends Component<{}, State> {
 
     if (h.checkins[td]) {
       delete h.checkins[td]
-      wx.showToast({ title: '已取消', icon: 'none' })
+      wx.showToast({ title: '已取消', icon: 'none', duration: 1200 })
     } else {
       h.checkins[td] = true
-      wx.showToast({ title: '打卡成功 🎉', icon: 'none' })
+      wx.showToast({ title: '打卡成功 🎉', icon: 'none', duration: 1200 })
     }
 
     saveData({ habits, theme: loadData().theme })
@@ -57,7 +52,7 @@ export default class TodayPage extends Component<{}, State> {
     return (
       <View className='app-page'>
         <View className='page-title'>✨ 今日打卡</View>
-        <View className='today-badge'>{dateStr}</View>
+        <View className='tag-badge'>{dateStr}</View>
 
         {habits.length === 0 ? (
           <View className='empty-state'>
@@ -68,22 +63,28 @@ export default class TodayPage extends Component<{}, State> {
             }}>+ 开始创建</Button>
           </View>
         ) : (
-          <ScrollView className='habits-list' scrollY>
+          <ScrollView scrollY className='habits-list'>
             {habits.map(h => {
               const checked = !!(h.checkins && h.checkins[currentDate])
               return (
                 <View
                   key={h.id}
                   className='habit-row'
-                  style={`border-left: 4px solid ${h.color}; border-left-style: solid; padding-left: 28px;`}
-                  onClick={() => this.toggleCheckin(h.id)}
+                  style={`--c-acc: ${h.color};`}
                 >
                   <Text className='emoji'>{h.emoji}</Text>
                   <View className='info'>
                     <Text className='name'>{h.name}</Text>
-                    <Text className='meta'>{checked ? '✅ 已完成' : '⏳ 待完成'}</Text>
+                    <View className='meta'>
+                      <Text className={`meta-tag ${checked ? 'done' : 'pend'}`}>
+                        {checked ? '✓ 已完成' : '⏳ 待完成'}
+                      </Text>
+                    </View>
                   </View>
-                  <View className={`check-btn ${checked ? 'checked' : ''}`}>
+                  <View
+                    className={`check-btn ${checked ? 'checked' : ''}`}
+                    onClick={() => this.toggleCheckin(h.id)}
+                  >
                     {checked ? '✓' : ''}
                   </View>
                 </View>
@@ -95,4 +96,3 @@ export default class TodayPage extends Component<{}, State> {
     )
   }
 }
-/* End of File */
